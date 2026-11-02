@@ -1,27 +1,50 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="theme_dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Eurvanta</title>
-    <meta name="description" content="Более 4-х лет на рынке. Быстрый обмен в день обращения. Конфиденциальность и комфорт.">
+    <meta name="description" content="Более 4-х лет на рынке. Отзывы в канале. Быстрый обмен в день обращения. Конфиденциальность и комфорт.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Eurvanta">
-    <meta property="og:description" content="Более 4-х лет на рынке. Быстрый обмен в день обращения. Конфиденциальность и комфорт.">
+    <meta property="og:description" content="Более 4-х лет на рынке. Отзывы в канале. Быстрый обмен в день обращения. Конфиденциальность и комфорт.">
     <meta property="og:image" content="avatar.png">
     <link rel="icon" href="avatar.png">
     <style>
         :root {
-            --page-bg: #07101f;
-            --card-bg: #161d31;
-            --card-border: rgba(232, 200, 114, 0.22);
-            --text: #f6f3ea;
-            --text-muted: #c5cedc;
-            --accent-1: #e8c872;
-            --accent-2: #c9a04a;
-            --accent-3: #8d6b2b;
-            --cta-shadow: rgba(201, 160, 74, 0.45);
-            --dot-color: rgba(232, 200, 114, 0.14);
+            --page-bg: #0b0f1a;
+            --card-bg: #ffffff;
+            --card-border: rgba(15, 23, 42, 0.06);
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --pill-bg: #f1f5f9;
+            --pill-text: #475569;
+            --ring: #ffffff;
+            --accent-1: #6d5efc;
+            --accent-2: #8b5cf6;
+            --accent-3: #a855f7;
+            --cover-overlay-top: rgba(11, 15, 26, 0.15);
+            --cover-overlay-bottom: rgba(11, 15, 26, 0.72);
+            --cta-shadow: rgba(109, 94, 252, 0.45);
+            --dot-color: rgba(15, 23, 42, 0.05);
+        }
+
+        html.theme_dark {
+            --page-bg: #05070d;
+            --card-bg: #12151f;
+            --card-border: rgba(255, 255, 255, 0.07);
+            --text: #f4f6fb;
+            --text-muted: #9aa4b8;
+            --pill-bg: rgba(255, 255, 255, 0.07);
+            --pill-text: #c4ccdb;
+            --ring: #12151f;
+            --accent-1: #7c6cff;
+            --accent-2: #9b7bff;
+            --accent-3: #b57bff;
+            --cover-overlay-top: rgba(5, 7, 13, 0.35);
+            --cover-overlay-bottom: rgba(5, 7, 13, 0.92);
+            --cta-shadow: rgba(124, 108, 255, 0.5);
+            --dot-color: rgba(255, 255, 255, 0.06);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -29,35 +52,37 @@
         html, body { margin: 0; padding: 0; min-height: 100%; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
             background: var(--page-bg);
             color: var(--text);
             min-height: 100vh;
             min-height: 100dvh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
         .cover {
             position: fixed;
             inset: 0;
             z-index: 0;
-            background-image: url("avatar.png");
             background-size: cover;
             background-position: center;
             filter: blur(34px) saturate(140%);
             transform: scale(1.25);
-            opacity: 0.9;
+            opacity: .9;
         }
 
         .cover::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(7, 16, 31, 0.35) 0%, rgba(7, 16, 31, 0.88) 68%, var(--page-bg) 100%);
+            background: linear-gradient(180deg, var(--cover-overlay-top) 0%, var(--cover-overlay-bottom) 68%, var(--page-bg) 100%);
         }
 
         .shell {
@@ -66,19 +91,22 @@
             width: 100%;
             max-width: 480px;
             padding: 40px 18px calc(22px + env(safe-area-inset-bottom));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .card {
             width: 100%;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 72px 26px 26px;
+            border-radius: 8px;
+            padding: 64px 26px 26px;
             position: relative;
             isolation: isolate;
             box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.55);
             text-align: center;
-            animation: cardIn 0.5s cubic-bezier(.16, 1, .3, 1) both;
+            animation: cardIn .5s cubic-bezier(.16, 1, .3, 1) both;
         }
 
         .card::before {
@@ -97,50 +125,108 @@
 
         @keyframes cardIn {
             from { opacity: 0; transform: translateY(22px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .avatar {
             position: absolute;
             top: 0;
             left: 50%;
-            width: 108px;
-            height: 108px;
+            width: 96px;
+            height: 96px;
             transform: translate(-50%, -50%);
             border-radius: 50%;
             z-index: 2;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            box-shadow: 0 0 0 5px var(--ring), 0 14px 30px -8px rgba(0, 0, 0, 0.45);
+        }
+
+        .avatar a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
             overflow: hidden;
-            background: #0a1840;
-            box-shadow: 0 0 0 5px var(--card-bg), 0 0 0 6px rgba(232, 200, 114, 0.45), 0 14px 30px -8px rgba(0, 0, 0, 0.45);
         }
 
         .avatar img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            object-position: center 30%;
+            transform: scale(1.75);
+            transform-origin: center 40%;
             display: block;
         }
 
-        .name, .description { position: relative; z-index: 1; }
+        .avatar .verified {
+            position: absolute;
+            right: 2px;
+            bottom: 2px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid var(--ring);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar .verified svg { width: 13px; height: 13px; color: #fff; }
+
+        .name, .members, .description {
+            position: relative;
+            z-index: 1;
+        }
 
         .name {
             font-size: 24px;
             font-weight: 800;
             line-height: 1.2;
-            letter-spacing: 0.08em;
-            margin: 8px 0 18px;
-            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px;
+            word-break: break-word;
+        }
+
+        .members {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--pill-text);
+            background: var(--pill-bg);
+            padding: 7px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        .members .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+            animation: livePulse 2s ease-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+            70%  { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
         .description {
             font-size: 15px;
-            line-height: 1.55;
+            line-height: 1.6;
             color: var(--text-muted);
             margin: 0 auto 26px;
-            max-width: 360px;
+            max-width: 340px;
+            word-break: break-word;
+            white-space: pre-line;
         }
-
-        .description p { margin: 0; }
 
         .cta {
             position: relative;
@@ -150,29 +236,25 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
+            box-sizing: border-box;
             border: 0;
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 17px 22px;
-            font-family: inherit;
+            font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
             font-size: 16px;
             font-weight: 600;
             letter-spacing: -0.01em;
-            color: #1a1408;
+            color: #fff;
             text-decoration: none;
             cursor: pointer;
             overflow: hidden;
-            background: linear-gradient(135deg, #f8e7b0 0%, #e7c56a 46%, #d4a441 100%);
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 55%, var(--accent-3) 100%);
             box-shadow: 0 12px 30px -10px var(--cta-shadow);
-            transition: transform 0.14s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            transition: transform .14s ease, box-shadow .2s ease, filter .2s ease;
         }
 
-        .cta:hover {
-            filter: brightness(1.05);
-            box-shadow: 0 16px 36px -10px var(--cta-shadow);
-        }
-
-        .cta:active { transform: scale(0.99); }
-
+        .cta:hover { filter: brightness(1.05); box-shadow: 0 16px 36px -10px var(--cta-shadow); }
+        .cta:active { transform: scale(.99); }
         .cta svg { width: 18px; height: 18px; }
 
         .cta::after {
@@ -182,47 +264,96 @@
             left: -120%;
             width: 55%;
             height: 200%;
-            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .5), transparent);
             transform: skewX(-20deg);
             animation: shine 4s ease-in-out infinite;
         }
 
         @keyframes shine {
-            0% { left: -120%; }
-            55% { left: 130%; }
+            0%   { left: -120%; }
+            55%  { left: 130%; }
             100% { left: 130%; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .cta::after, .card { animation: none; }
+            .cta::after, .card, .members .dot { animation: none; }
         }
 
-        @media (max-width: 420px) {
-            .card { padding: 68px 18px 22px; }
-            .description { font-size: 14px; }
-            .avatar { width: 96px; height: 96px; }
-            .name { font-size: 22px; }
+        @media (max-width: 360px) {
+            .card { padding: 58px 20px 22px; border-radius: 24px; }
+            .avatar { width: 84px; height: 84px; }
+            .name { font-size: 21px; }
         }
     </style>
 </head>
 <body>
-    <div class="cover"></div>
-    <div class="shell">
-        <main class="card">
-            <a class="avatar" href="https://t.me/+ItABUMyx1LU4NmYy" aria-label="Eurvanta">
-                <img src="avatar-mark.png" alt="Eurvanta">
+<div class="cover" style="background-image:url('avatar.png');"></div>
+
+<div class="shell">
+    <main class="card">
+        <div class="avatar">
+            <a href="https://t.me/+9bIGloXHxfA2ZmRi">
+                <img src="avatar.png" alt="Eurvanta">
             </a>
-            <h1 class="name">Eurvanta</h1>
-            <div class="description">
-                <p>- Более 4-х лет на рынке. Отзывы в&nbsp;канале&nbsp;✅</p>
-                <p>- Быстрый обмен в&nbsp;день обращения</p>
-                <p>- Конфиденциальность и&nbsp;комфорт</p>
-            </div>
-            <a class="cta" href="https://t.me/+ItABUMyx1LU4NmYy">
-                Перейти в канал
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-            </a>
-        </main>
-    </div>
+            <span class="verified" title="Verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+            </span>
+        </div>
+
+        <h1 class="name">Eurvanta</h1>
+
+        <div class="members">
+            <span class="dot"></span>
+            <span class="members-count" data-target="3">3</span> members
+        </div>
+
+        <div class="description">- Более 4-х лет на рынке. Отзывы в канале ✅
+- Быстрый обмен в день обращения
+- Конфиденциальность и комфорт</div>
+
+        <a id="rdrUrl" href="https://t.me/+9bIGloXHxfA2ZmRi" class="cta">
+            Перейти в канал
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+    </main>
+</div>
+
+<script>
+    (function () {
+        if (window.matchMedia) {
+            var darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
+            document.documentElement.classList.toggle("theme_dark", darkMedia.matches);
+            darkMedia.addEventListener("change", function (e) {
+                document.documentElement.classList.toggle("theme_dark", e.matches);
+            });
+        }
+
+        var el = document.querySelector(".members-count");
+        if (!el) return;
+
+        var target = parseInt(el.dataset.target, 10) || 0;
+        var nf = new Intl.NumberFormat("en-US");
+        var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (target <= 0 || reduced) {
+            el.textContent = nf.format(target);
+            return;
+        }
+
+        var duration = 1300;
+        var start = null;
+        var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+
+        function step(ts) {
+            if (start === null) start = ts;
+            var p = Math.min((ts - start) / duration, 1);
+            el.textContent = nf.format(Math.round(easeOut(p) * target));
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = nf.format(target);
+        }
+
+        requestAnimationFrame(step);
+    })();
+</script>
 </body>
 </html>
